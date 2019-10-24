@@ -26,8 +26,8 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 #RUN apt-get install -y
 #RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4
 #NOT WORK RUN sed -i "s/archive.ubuntu.com/mirrors.cloud.tencent.com/g" "/etc/apt/sources.list"
-RUN sed -i "s/archive.ubuntu.com/mirrors.aliyun.com/g" "/etc/apt/sources.list"
-RUN sed -i "s/security.ubuntu.com/mirrors.aliyun.com/g" "/etc/apt/sources.list"
+#RUN sed -i "s/archive.ubuntu.com/mirrors.aliyun.com/g" "/etc/apt/sources.list"
+#RUN sed -i "s/security.ubuntu.com/mirrors.aliyun.com/g" "/etc/apt/sources.list"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl ca-certificates fontconfig locales ttf-dejavu  \
@@ -37,6 +37,7 @@ RUN apt-get update \
 ENV JAVA_VERSION jdk-11.0.4+11_openj9-0.15.1
 
 #BINARY_URL='https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.4%2B11_openj9-0.15.1/OpenJDK11U-jdk_x64_linux_openj9_11.0.4_11_openj9-0.15.1.tar.gz';
+#BINARY_URL='https://temp-1255437190.cos.ap-guangzhou.myqcloud.com/OpenJDK11U-jdk_x64_linux_openj9_11.0.4_11_openj9-0.15.1.tar.gz'; 
 RUN set -eux; \
     ARCH="$(dpkg --print-architecture)"; \
     case "${ARCH}" in \
@@ -50,7 +51,7 @@ RUN set -eux; \
          ;; \
        amd64|x86_64) \
          ESUM='b1099cccc80a3f434728c9bc3b8a90395793b625f4680ca05267cf635143d64d'; \
-         BINARY_URL='https://temp-1255437190.cos.ap-guangzhou.myqcloud.com/OpenJDK11U-jdk_x64_linux_openj9_11.0.4_11_openj9-0.15.1.tar.gz'; \
+         BINARY_URL='https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.4%2B11_openj9-0.15.1/OpenJDK11U-jdk_x64_linux_openj9_11.0.4_11_openj9-0.15.1.tar.gz'; \
          ;; \
        *) \
          echo "Unsupported arch: ${ARCH}"; \
